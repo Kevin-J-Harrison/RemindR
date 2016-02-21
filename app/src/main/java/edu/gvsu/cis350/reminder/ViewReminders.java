@@ -10,7 +10,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+
 public class ViewReminders extends AppCompatActivity {
+
+    public static DoubleLinkedList reminderList = new DoubleLinkedList();
+    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +25,12 @@ public class ViewReminders extends AppCompatActivity {
         setContentView(R.layout.activity_view_reminders);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         Intent intent = getIntent();
         //String value = intent.getStringExtra("key"); //if it's a string you stored.
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        //Add Reminder Button
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,6 +39,11 @@ public class ViewReminders extends AppCompatActivity {
                 ViewReminders.this.startActivity(myIntent);
             }
         });
+
+        //generate the list of reminders
+        if (reminderList.size() != 0){
+
+        }
     }
 
     @Override
