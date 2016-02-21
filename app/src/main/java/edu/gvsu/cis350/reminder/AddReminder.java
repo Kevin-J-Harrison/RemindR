@@ -13,6 +13,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
+/**
+* Written by Andrew Burns
+**/
+
 
 public class AddReminder extends AppCompatActivity {
 
