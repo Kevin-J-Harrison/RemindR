@@ -13,8 +13,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
 * Written by Andrew Burns
@@ -22,15 +22,21 @@ import java.util.Date;
 
 
 public class AddReminder extends AppCompatActivity {
-    public static DoubleLinkedList reminderList;
-    EditText titleText = (EditText) findViewById(R.id.ReminderName);
-    EditText notesText = (EditText) findViewById(R.id.notesField);
+    ArrayList<Reminder> reminderList;
+    boolean listMade = true;
+    EditText titleText;
+    EditText notesText;
+    Calendar date;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
         Intent intent = getIntent();
-        reminderList = intent.getParcelableExtra("reminders");
+        reminderList = intent.getParcelableArrayListExtra("reminders");
+        titleText = (EditText) findViewById(R.id.ReminderName);
+        notesText = (EditText) findViewById(R.id.notesField);
+
 
         Button submit = (Button) findViewById(R.id.submit_button);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -41,14 +47,15 @@ public class AddReminder extends AppCompatActivity {
                 Reminder temp = new Reminder();
                 temp.setTitle(titleText.getText().toString());
                 temp.setNotes(notesText.getText().toString());
-                temp.setDate(new Date());
+                temp.setDate(date);
                 //unsure how to grab info from time spinners and then properly format into Date
                 //for now just setting to current date and time
 
                 reminderList.add(temp);
 
                 Intent myIntent = new Intent(AddReminder.this, ViewReminders.class);
-                myIntent.putExtra("reminders", (Parcelable)reminderList); //Optional parameters
+                myIntent.putExtra("reminders", reminderList); //Optional parameters
+                myIntent.putExtra("listMade", listMade);
                 AddReminder.this.startActivity(myIntent);
             }
         });
