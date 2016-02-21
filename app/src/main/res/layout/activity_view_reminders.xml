@@ -16,30 +16,28 @@
         android:id="@+id/reminderListView"
         android:layout_gravity="top"
         android:layout_weight="0.37"
-        android:layout_above="@+id/fab"
-        android:layout_alignParentTop="true" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_menu_add"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/appTitle" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remind-R"
         android:id="@+id/appTitle"
-        android:layout_below="@+id/reminderListView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/fab"
         android:textSize="48dp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:layout_toEndOf="@+id/button"
+        android:layout_alignTop="@+id/button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
 
