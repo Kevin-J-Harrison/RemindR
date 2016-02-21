@@ -16,5 +16,6 @@
         completions."
     </string>
     <string name="title_activity_test">testActivity</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>
