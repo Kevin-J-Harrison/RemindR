@@ -24,25 +24,18 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal">
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:ems="10"
-                android:id="@+id/ReminderName"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/titleTextView"
-                android:layout_gravity="center_horizontal"
-                android:editable="true"
-                android:hint="Reminder Name"
-                android:singleLine="true"
-                android:gravity="center_horizontal" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="NAME"
+                android:id="@+id/displayReminderName" />
 
             <DatePicker
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/datePicker"
-                android:layout_below="@+id/ReminderName"
+                android:id="@+id/editDatePicker"
+                android:layout_below="@+id/editReminderName"
                 android:layout_centerHorizontal="true"
                 android:datePickerMode="spinner"
                 android:spinnersShown="true"
@@ -52,8 +45,8 @@
             <TimePicker
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/timePicker"
-                android:layout_below="@+id/datePicker"
+                android:id="@+id/editTimePicker"
+                android:layout_below="@+id/editDatePicker"
                 android:layout_centerHorizontal="true"
                 android:timePickerMode="spinner"
                 android:layout_gravity="center_horizontal" />
@@ -62,9 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:id="@+id/notesField"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/titleTextView"
+                android:id="@+id/editNotesField"
                 android:layout_gravity="center_horizontal"
                 android:inputType="textCapSentences|textLongMessage|textAutoCorrect|textMultiLine"
                 android:editable="true"
@@ -74,10 +65,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save Reminder"
-                android:id="@+id/submit_button"
+                android:id="@+id/saveEditbutton"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DELETE"
+                android:id="@+id/deleteButton"
+                android:background="#d50000" />
+
         </LinearLayout>
     </ScrollView>
 

@@ -17,5 +17,7 @@
     </string>
     <string name="title_activity_test">testActivity</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_view_individual_reminder">ViewIndividualReminder</string>
+    <string name="title_activity_edit_reminder">EditReminderActivity</string>
 
 </resources>

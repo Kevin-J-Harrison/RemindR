@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -61,6 +62,8 @@ public class ViewReminders extends AppCompatActivity {
         });
 
 
+
+
     }
 
     private void populateListView() {
@@ -73,7 +76,7 @@ public class ViewReminders extends AppCompatActivity {
         for (int i = 0; i < size; i++) {
             temp = reminderList.get(i);
             reminderFinalListView[i] = (temp.title + "\n" +
-                    temp.year + " " + temp.hour);
+                    temp.month + "/" + temp.day + "/" + temp.year + "   " + temp.hour + ":" + temp.minute);
         }
 
         //Build adapter
@@ -82,6 +85,16 @@ public class ViewReminders extends AppCompatActivity {
         //Configure ListView
         ListView list = (ListView) findViewById(R.id.reminderListView);
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3) {
+                Intent viewThisReminderIntent = new Intent(ViewReminders.this, ViewIndividualReminder.class);
+                viewThisReminderIntent.putExtra("position", position);
+                startActivity(viewThisReminderIntent);
+            }
+        });
     }
 
 

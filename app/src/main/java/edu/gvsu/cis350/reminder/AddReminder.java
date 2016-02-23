@@ -1,12 +1,8 @@
 package edu.gvsu.cis350.reminder;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Parcelable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,9 +10,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
-
-import java.util.ArrayList;
-import java.util.Calendar;
+import android.widget.Toast;
 
 /**
 * Written by Andrew Burns
@@ -37,7 +31,6 @@ public class AddReminder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
-        Intent intent = getIntent();
 
         titleText = (EditText) findViewById(R.id.ReminderName);
         notesText = (EditText) findViewById(R.id.notesField);
@@ -60,6 +53,13 @@ public class AddReminder extends AppCompatActivity {
                 else
                     dbHelper.updateReminder(reminderInfo);
 
+                Context context = getApplicationContext();
+                CharSequence text = "Reminder added!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
                 Intent myIntent = new Intent(AddReminder.this, ViewReminders.class);
                 AddReminder.this.startActivity(myIntent);
             }
@@ -72,7 +72,7 @@ public class AddReminder extends AppCompatActivity {
         reminderInfo.title = titleText.getText().toString();
         reminderInfo.notes = notesText.getText().toString();
         reminderInfo.year = datePicker.getYear();
-        reminderInfo.month = datePicker.getMonth();
+        reminderInfo.month = (datePicker.getMonth()+1);
         reminderInfo.day = datePicker.getDayOfMonth();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             reminderInfo.hour = timePicker.getHour();
