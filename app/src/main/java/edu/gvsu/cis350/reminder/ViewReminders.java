@@ -1,5 +1,7 @@
 package edu.gvsu.cis350.reminder;
 
+import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -12,50 +14,37 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class ViewReminders extends AppCompatActivity {
 
+    ArrayList<ReminderModel> reminderList;
 
-    ArrayList<Reminder> reminderList;
-
-
+    private ReminderDBHelper dbHelper = new ReminderDBHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_view_reminders);
-
-        reminderList = new ArrayList<>();
-        boolean listMade;
-
-        Intent intent = getIntent();
-        listMade = intent.getBooleanExtra("listMade", false);
-
-        if (listMade) {
-            reminderList = intent.getParcelableExtra("reminders");
-        }
-        else {
-            for (int i = 1; i < 4; i++) {
-                Reminder test = new Reminder();
-                test.setTitle(("Reminder #" + Integer.toString(i)));
-                test.setNotes(("These are notes. " + Integer.toString(i)));
-                test.setDate(Calendar.getInstance());
-                reminderList.add(test);
-            }
-            listMade = true;
-        }
 
         Button fab = (Button) findViewById(R.id.button);
 
+        reminderList = new ArrayList<>();
 
+        if(dbHelper.getReminders() != null){
+            reminderList = dbHelper.getReminders();
+        }
 
         //generate the list of reminders
+        if(!reminderList.isEmpty())
             populateListView();
 
 
@@ -66,7 +55,6 @@ public class ViewReminders extends AppCompatActivity {
             public void onClick(View view) {
                 //get ready to go to the next activity, pass the list through
                 Intent myIntent = new Intent(ViewReminders.this, AddReminder.class);
-                myIntent.putExtra("reminders", reminderList);
                 ViewReminders.this.startActivity(myIntent);
 
             }
@@ -75,17 +63,17 @@ public class ViewReminders extends AppCompatActivity {
 
     }
 
-    private void populateListView(){
+    private void populateListView() {
         //Create list of items
         int size = reminderList.size();
         String[] reminderFinalListView = new String[size];
 
-        Reminder temp;
+        ReminderModel temp;
         //build an array of titles
         for (int i = 0; i < size; i++) {
             temp = reminderList.get(i);
-            reminderFinalListView[i] = (temp.getTitle() + "\n" +
-                    temp.dateToString() + " " + temp.timeToString());
+            reminderFinalListView[i] = (temp.title + "\n" +
+                    temp.year + " " + temp.hour);
         }
 
         //Build adapter
@@ -94,8 +82,8 @@ public class ViewReminders extends AppCompatActivity {
         //Configure ListView
         ListView list = (ListView) findViewById(R.id.reminderListView);
         list.setAdapter(adapter);
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
