@@ -89,16 +89,16 @@ public class EditReminderActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Context context = getApplicationContext();
-                CharSequence text = "REMINDER NOT DELETED";
+                CharSequence text = "REMINDER DELETED";
                 int duration = Toast.LENGTH_SHORT;
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
 
-                /*
+
                 updateReminderInfo();
-                dbHelper.updateReminder(reminderInfo);
-                */
+                dbHelper.deleteReminder(reminderInfo.id);
+
 
 
                 Intent myIntent = new Intent(EditReminderActivity.this, ViewReminders.class);
