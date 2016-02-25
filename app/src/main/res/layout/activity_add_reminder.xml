@@ -73,7 +73,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save Reminder"
+                android:text="Save"
                 android:id="@+id/submit_button"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"

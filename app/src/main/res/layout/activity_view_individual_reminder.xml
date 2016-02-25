@@ -68,10 +68,11 @@
             android:textSize="30dp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="301dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Notes go here."
+            android:textSize="20dp"
             android:id="@+id/noteText"
             android:layout_gravity="center_horizontal"
             android:textStyle="italic" />
@@ -79,7 +80,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="EDIT REMINDER"
+            android:text="EDIT"
+            android:textSize="20dp"
+            android:textAlignment="center"
             android:id="@+id/editButton"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
