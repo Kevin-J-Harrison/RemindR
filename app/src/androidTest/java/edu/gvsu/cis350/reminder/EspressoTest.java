@@ -1,14 +1,13 @@
 package edu.gvsu.cis350.reminder;
 
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.contrib.PickerActions;
-import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.test.uiautomator.UiDevice;
+import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import org.hamcrest.Matchers;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onData;
@@ -24,21 +23,24 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
  * Created by alexvansteel on 3/23/16.
  */
 @RunWith(AndroidJUnit4.class)
+@LargeTest
 public class EspressoTest {
-
-    private UiDevice mDevice;
-
-    public EspressoTest () {
-        ActivityTestRule<ViewReminders> mActivityRule =
-                new ActivityTestRule<>(ViewReminders.class);
-    }
+//
+//    private UiDevice mDevice;
+//
+//    @Rule
+//    public EspressoTest() {
+//        ActivityTestRule<ViewReminders> mActivityRule =
+//                new ActivityTestRule<>(ViewReminders.class);
+//    }
 
     /**
      * Clicks on the button to add a reminder.
      * Creates a reminder, verifying that each step is correct along the way.
      */
+    @Test
     public void addReminderTest() {
-        mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+//        mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
         onData(withId(R.id.button)).perform(click());
 
@@ -82,6 +84,7 @@ public class EspressoTest {
     /**
      * Clicks on the Reminder and verifies the title is the title of the reminder.
      */
+    @Test
     public void viewReminderTest() {
         onData(withId(R.id.reminderListView)).perform(click());
         onView(withId(R.id.displayReminderName)).check(matches(withText("Reminder Title")));
@@ -127,6 +130,7 @@ public class EspressoTest {
     /**
      * Clicks on the Reminder, then deletes the reminder. Then checks to make sure the list is null.
      */
+    @Test
     public void deleteReminderTest() {
         onData(withId(R.id.reminderListView)).perform(click());
         onView(withId(R.id.deleteButton)).perform(click());
