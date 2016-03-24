@@ -1,32 +1,22 @@
 package edu.gvsu.cis350.reminder;
 
-import org.hamcrest.Matchers;
-import org.junit.Test;
-import java.util.regex.Pattern;
-
-import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.contrib.PickerActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
+import android.support.test.uiautomator.UiDevice;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import android.support.test.espresso.contrib.PickerActions;
-
-import org.junit.Rule;
-import org.junit.Test;
+import org.hamcrest.Matchers;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
@@ -36,9 +26,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 public class EspressoTest {
 
+    private UiDevice mDevice;
+
     public EspressoTest () {
-        @Rule
-        public ActivityTestRule<ViewReminders> mActivityRule =
+        ActivityTestRule<ViewReminders> mActivityRule =
                 new ActivityTestRule<>(ViewReminders.class);
     }
 
@@ -47,6 +38,8 @@ public class EspressoTest {
      * Creates a reminder, verifying that each step is correct along the way.
      */
     public void addReminderTest() {
+        mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+
         onData(withId(R.id.button)).perform(click());
 
         onView(withId(R.id.ReminderName)).perform(typeText("Reminder Title"));
@@ -73,6 +66,7 @@ public class EspressoTest {
         onView(withId(android.R.id.button1)).perform(click());
 
         onView(withId(R.id.dateText)).check(matches(withText(year + "/" + month + "/" + day)));
+
 
         int hour = 10;
         int minutes = 59;
