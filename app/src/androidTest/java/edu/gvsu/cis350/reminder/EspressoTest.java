@@ -1,6 +1,7 @@
 package edu.gvsu.cis350.reminder;
 
 import android.support.test.espresso.contrib.PickerActions;
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.DatePicker;
@@ -28,11 +29,12 @@ public class EspressoTest {
 //
 //    private UiDevice mDevice;
 //
-//    @Rule
-//    public EspressoTest() {
-//        ActivityTestRule<ViewReminders> mActivityRule =
-//                new ActivityTestRule<>(ViewReminders.class);
-//    }
+    private ViewReminders mReminders;
+
+    public EspressoTest() {
+        ActivityTestRule<Splashscreen> mActivityRule =
+                new ActivityTestRule<>(Splashscreen.class);
+    }
 
     /**
      * Clicks on the button to add a reminder.
@@ -42,7 +44,7 @@ public class EspressoTest {
     public void addReminderTest() {
 //        mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
-        onData(withId(R.id.button)).perform(click());
+        onView(withId(R.id.button)).perform(click());
 
         onView(withId(R.id.ReminderName)).perform(typeText("Reminder Title"));
         onView(withId(R.id.ReminderName)).check(matches(withText("Reminder Title")));
