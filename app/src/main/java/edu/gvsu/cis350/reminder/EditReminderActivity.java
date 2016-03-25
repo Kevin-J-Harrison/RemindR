@@ -2,6 +2,8 @@ package edu.gvsu.cis350.reminder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +32,8 @@ public class EditReminderActivity extends AppCompatActivity {
     private DatePicker datePicker;
     private TimePicker timePicker;
     private ArrayList<ReminderModel> reminderList;
+    private EditText addressText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,7 @@ public class EditReminderActivity extends AppCompatActivity {
         notesText = (EditText) findViewById(R.id.editNotesField);
         datePicker = (DatePicker) findViewById(R.id.editDatePicker);
         timePicker = (TimePicker) findViewById(R.id.editTimePicker);
+        addressText = (EditText) findViewById(R.id.editAddressField);
 
         Intent incomingIntent = getIntent();
         final int i = incomingIntent.getIntExtra("position", 0);
@@ -57,6 +62,7 @@ public class EditReminderActivity extends AppCompatActivity {
         datePicker.updateDate(reminderInfo.year, reminderInfo.day, reminderInfo.month);
         timePicker.setCurrentHour(reminderInfo.hour);
         timePicker.setCurrentMinute(reminderInfo.minute);
+        addressText.setText(reminderInfo.address);
 
 
         Button submit = (Button) findViewById(R.id.saveEditbutton);
@@ -105,11 +111,13 @@ public class EditReminderActivity extends AppCompatActivity {
                 EditReminderActivity.this.startActivity(myIntent);
             }
         });
+
+
     }
 
     // Grab info from spinners & text fields, place into reminderInfo
     private void updateReminderInfo() {
-       // reminderInfo.title = titleText.getText().toString();
+        // reminderInfo.title = titleText.getText().toString();
         reminderInfo.notes = notesText.getText().toString();
         reminderInfo.year = datePicker.getYear();
         reminderInfo.month = (datePicker.getMonth()+1);
@@ -126,6 +134,7 @@ public class EditReminderActivity extends AppCompatActivity {
         else {
             reminderInfo.minute = timePicker.getCurrentMinute();
         }
+        reminderInfo.address = addressText.getText().toString();
 
     }
 }

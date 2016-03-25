@@ -1,20 +1,27 @@
 package edu.gvsu.cis350.reminder;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.support.v4.content.ContextCompat;
+import android.content.pm.PackageManager;
 
 /**
-* Written by Andrew Burns
-**/
+ * Written by Andrew Burns
+ **/
 
 
 public class AddReminder extends AppCompatActivity {
@@ -26,7 +33,7 @@ public class AddReminder extends AppCompatActivity {
     private EditText notesText;
     private DatePicker datePicker;
     private TimePicker timePicker;
-
+    private EditText addressText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +43,12 @@ public class AddReminder extends AppCompatActivity {
         notesText = (EditText) findViewById(R.id.notesField);
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         timePicker = (TimePicker) findViewById(R.id.timePicker);
+        addressText = (EditText) findViewById(R.id.addressField);
+
+
+
+
+
 
 
         Button submit = (Button) findViewById(R.id.submit_button);
@@ -65,6 +78,8 @@ public class AddReminder extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     // Grab info from spinners & text fields, place into reminderInfo
@@ -86,6 +101,9 @@ public class AddReminder extends AppCompatActivity {
         else {
             reminderInfo.minute = timePicker.getCurrentMinute();
         }
+        reminderInfo.address = addressText.getText().toString();
 
     }
+
+
 }

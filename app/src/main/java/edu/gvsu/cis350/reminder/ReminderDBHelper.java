@@ -18,7 +18,7 @@ import edu.gvsu.cis350.reminder.ReminderDB.Reminder;
 public class ReminderDBHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "reminder.db";
+    public static final String DATABASE_NAME = "reminderDB.db";
 
     private static final String SQL_CREATE_REMINDER = "CREATE TABLE " + Reminder.TABLE_NAME + " (" +
             Reminder._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -28,7 +28,8 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
             Reminder.COLUMN_NAME_REMINDER_MINUTE + " INTEGER," +
             Reminder.COLUMN_NAME_REMINDER_YEAR + " INTEGER," +
             Reminder.COLUMN_NAME_REMINDER_MONTH + " INTEGER," +
-            Reminder.COLUMN_NAME_REMINDER_DAY + " INTEGER" +
+            Reminder.COLUMN_NAME_REMINDER_DAY + " INTEGER," +
+            Reminder.COLUMN_NAME_REMINDER_ADDRESS + " STRING" +
             " )";
 
     private static final String SQL_DELETE_REMINDER =
@@ -59,6 +60,8 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
         model.year = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_YEAR));
         model.month = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_MONTH));
         model.day = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_DAY));
+        model.address = c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_ADDRESS));
+
 
         //model.reminderSound = c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_SOUND)) != "" ? Uri.parse(c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_SOUND))) : null;
 
@@ -75,6 +78,7 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
         values.put(Reminder.COLUMN_NAME_REMINDER_YEAR, model.year);
         values.put(Reminder.COLUMN_NAME_REMINDER_MONTH, model.month);
         values.put(Reminder.COLUMN_NAME_REMINDER_DAY, model.day);
+        values.put(Reminder.COLUMN_NAME_REMINDER_ADDRESS, model.address);
         //values.put(Reminder.COLUMN_NAME_REMINDER_Sound, model.reminderTone != null ? model.reminderSound.toString() : "");
 
         return values;
