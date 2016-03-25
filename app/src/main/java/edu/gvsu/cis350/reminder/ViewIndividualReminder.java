@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -66,7 +67,12 @@ public class ViewIndividualReminder extends AppCompatActivity {
 
 
 
-        Button openMap = (Button) findViewById(R.id.viewMap_button);
+
+        FloatingActionButton openMap = (FloatingActionButton) findViewById(R.id.viewMap_button);
+
+        if(temp.address.compareTo("") == 0) {
+            openMap.setVisibility(View.GONE);
+        }
 
         //View Map Button
         openMap.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +86,7 @@ public class ViewIndividualReminder extends AppCompatActivity {
 
 
         //Edit Button
-        Button editButton = (Button) findViewById(R.id.editButton);
+        FloatingActionButton editButton = (FloatingActionButton) findViewById(R.id.editButton);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

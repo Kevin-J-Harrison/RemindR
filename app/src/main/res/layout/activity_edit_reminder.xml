@@ -69,21 +69,25 @@
                 android:editable="true"
                 android:hint="Enter any notes here." />
 
-            <Button
-                android:layout_width="wrap_content"
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:layout_margin="16dp"
                 android:id="@+id/saveEditbutton"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                app:backgroundTint="@color/GVBlue"
+                android:src="@mipmap/ic_done"
+                android:layout_weight="0.06" />
 
-            <Button
-                android:layout_width="wrap_content"
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:text="DELETE"
+                android:layout_margin="16dp"
                 android:id="@+id/deleteButton"
-                android:background="#d50000" />
+                android:layout_gravity="center_horizontal"
+                app:backgroundTint="@color/GVBlue"
+                android:src="@mipmap/ic_delete"
+                android:layout_weight="0.06" />
 
         </LinearLayout>
     </ScrollView>

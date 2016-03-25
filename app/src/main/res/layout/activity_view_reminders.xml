@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
+    android:background="@color/GVWhite"
     tools:context="edu.gvsu.cis350.reminder.ViewReminders"
 
     android:weightSum="1">
@@ -15,28 +17,36 @@
         android:id="@+id/reminderListView"
         android:layout_gravity="top"
         android:layout_weight="0.37"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/appTitle" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/appTitle"
+        android:background="@color/GVWhite"
+        android:layout_alignParentBottom="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remind-R"
         android:id="@+id/appTitle"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:textSize="48dp"
-        android:textAlignment="center"
-        android:layout_toEndOf="@+id/button"
-        android:layout_alignTop="@+id/button" />
+        android:textColor="@color/GVWhite"
+        android:background="@color/GVBlue"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        />
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADD"
-        android:id="@+id/button"
+        android:src="@mipmap/ic_add"
+        app:backgroundTint="@color/GVBlue"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="27dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="25dp" />
 
 </RelativeLayout>
 

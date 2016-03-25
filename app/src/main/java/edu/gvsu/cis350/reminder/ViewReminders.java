@@ -39,7 +39,7 @@ public class ViewReminders extends AppCompatActivity {
 
         setContentView(R.layout.activity_view_reminders);
 
-        Button fab = (Button) findViewById(R.id.button);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.button);
 
         reminderList = new ArrayList<>();
 
