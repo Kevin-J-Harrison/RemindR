@@ -99,7 +99,7 @@
             android:layout_margin="16dp"
             android:id="@+id/viewMap_button"
             app:backgroundTint="@color/GVBlue"
-            android:src="@mipmap/ic_place_white_24dp"
+            android:src="@mipmap/ic_place"
             android:layout_weight="0.06"
             android:layout_gravity="center_horizontal" />
 
@@ -110,7 +110,7 @@
             android:id="@+id/editButton"
             android:layout_gravity="center_horizontal"
             app:backgroundTint="@color/GVBlue"
-            android:src="@mipmap/ic_create_white_24dp"
+            android:src="@mipmap/ic_create"
             android:layout_weight="0.06" />
     </LinearLayout>
 

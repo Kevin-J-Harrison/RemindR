@@ -98,6 +98,8 @@ public class AddReminder extends AppCompatActivity {
 
                 Intent myIntent = new Intent(AddReminder.this, ViewReminders.class);
                 AddReminder.this.startActivity(myIntent);
+
+                startService(new Intent(AddReminder.this, TimeService.class));
             }
         });
 
