@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -70,8 +71,8 @@ public class EditReminderActivity extends AppCompatActivity {
         addressText.setText(reminderInfo.address);
 
 
-        Button submit = (Button) findViewById(R.id.saveEditbutton);
-        Button delete = (Button) findViewById(R.id.deleteButton);
+        FloatingActionButton submit = (FloatingActionButton) findViewById(R.id.saveEditbutton);
+        FloatingActionButton delete = (FloatingActionButton) findViewById(R.id.deleteButton);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,7 +52,7 @@ public class AddReminder extends AppCompatActivity {
         addressText = (EditText) findViewById(R.id.addressField);
 
 
-        Button submit = (Button) findViewById(R.id.submit_button);
+        FloatingActionButton submit = (FloatingActionButton) findViewById(R.id.submit_button);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

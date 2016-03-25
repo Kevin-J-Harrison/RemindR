@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Reminder</string>
+    <string name="app_name">Remind-R</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_reminder">Add a New Reminder</string>
 
