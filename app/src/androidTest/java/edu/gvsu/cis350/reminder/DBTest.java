@@ -89,7 +89,7 @@ public class DBTest extends AndroidTestCase {
         int dayColumnIndex = cursor.getColumnIndex(ReminderDB.Reminder.COLUMN_NAME_REMINDER_DAY);
         int day = cursor.getInt(dayColumnIndex);
 
-        assertEquals(COLUMN_NAME_REMINDER_TITLE, id);
+        assertEquals(COLUMN_NAME_REMINDER_TITLE, title);
         assertEquals(COLUMN_NAME_REMINDER_NOTES, notes);
         assertEquals(COLUMN_NAME_REMINDER_HOUR, hour);
         assertEquals(COLUMN_NAME_REMINDER_MINUTE, minute);

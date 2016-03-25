@@ -66,7 +66,12 @@ public class ViewIndividualReminder extends AppCompatActivity {
 
 
 
+
         Button openMap = (Button) findViewById(R.id.viewMap_button);
+
+        if(temp.address.compareTo("") == 0) {
+            openMap.setVisibility(View.GONE);
+        }
 
         //View Map Button
         openMap.setOnClickListener(new View.OnClickListener() {
