@@ -1,5 +1,6 @@
 package edu.gvsu.cis350.reminder;
 
+import android.content.Intent;
 import android.support.test.espresso.contrib.PickerActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -8,6 +9,7 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import org.hamcrest.Matchers;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -26,15 +28,16 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class EspressoTest {
-//
-//    private UiDevice mDevice;
-//
-    private ViewReminders mReminders;
+
 
     public EspressoTest() {
-        ActivityTestRule<Splashscreen> mActivityRule =
-                new ActivityTestRule<>(Splashscreen.class);
+        super();
     }
+
+    @Rule
+    public ActivityTestRule<Splashscreen> mActivityRule =
+            new ActivityTestRule<>(Splashscreen.class, true, false);
+
 
     /**
      * Clicks on the button to add a reminder.
@@ -42,9 +45,10 @@ public class EspressoTest {
      */
     @Test
     public void addReminderTest() {
-//        mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        Intent intent = new Intent();
+        mActivityRule.launchActivity(intent);
 
-        onView(withId(R.id.button)).perform(click());
+        onData(withId(R.id.button)).perform(click());
 
         onView(withId(R.id.ReminderName)).perform(typeText("Reminder Title"));
         onView(withId(R.id.ReminderName)).check(matches(withText("Reminder Title")));
@@ -53,12 +57,7 @@ public class EspressoTest {
         onView(withId(R.id.notesField)).check(matches(withText("reminder notes")));
 
         /**
-         * There is an alternate way to do this that involves a lot more step by step instruction.
-         * It involves clicking on the spinner object, verifying that the onView string matches what
-         * you want to click on. Then selecting it. This SHOULD work just as well. However, the
-         * PickerAction used in the example is not working here, but I think it is the name of
-         * something from the code they were using as an example. We might be using a different
-         * picker name that I don't feel like finding at this point in time.
+         * Specifically for datePicker
          */
         int year = 2020;
         int month = 11;
@@ -71,7 +70,9 @@ public class EspressoTest {
 
         onView(withId(R.id.dateText)).check(matches(withText(year + "/" + month + "/" + day)));
 
-
+        /**
+         * Specifically for timePicker
+         */
         int hour = 10;
         int minutes = 59;
 
@@ -88,6 +89,9 @@ public class EspressoTest {
      */
     @Test
     public void viewReminderTest() {
+        Intent intent = new Intent();
+        mActivityRule.launchActivity(intent);
+
         onData(withId(R.id.reminderListView)).perform(click());
         onView(withId(R.id.displayReminderName)).check(matches(withText("Reminder Title")));
     }
@@ -96,13 +100,20 @@ public class EspressoTest {
      * Clicks on the Reminder in the list view, then chooses the option to edit the reminder.
      * Values are changed and the reminder is saved. Then it is verified that the changes were updated.
      */
+    @Test
     public void editReminderTest() {
+        Intent intent = new Intent();
+        mActivityRule.launchActivity(intent);
+
         onData(withId(R.id.reminderListView)).perform(click());
         onView(withId(R.id.editButton)).perform(click());
 
         onView(withId(R.id.ReminderName)).perform(typeText("New Reminder Title"));
         onView(withId(R.id.notesField)).perform(typeText("Edit reminder notes"));
 
+        /**
+         * Specifically for datePicker
+         */
         int year = 2018;
         int month = 1;
         int day = 25;
@@ -112,6 +123,9 @@ public class EspressoTest {
                 .perform(PickerActions.setDate(year, month + 1, day));
         onView(withId(android.R.id.button1)).perform(click());
 
+        /**
+         * Specificaly for timePicker
+         */
         int hour = 5;
         int minutes = 43;
 
@@ -134,7 +148,11 @@ public class EspressoTest {
      */
     @Test
     public void deleteReminderTest() {
+        Intent intent = new Intent();
+        mActivityRule.launchActivity(intent);
+
         onData(withId(R.id.reminderListView)).perform(click());
+        onView(withId(R.id.editButton)).perform(click());
         onView(withId(R.id.deleteButton)).perform(click());
         onData(withId(R.id.reminderListView)).check(null);
     }
