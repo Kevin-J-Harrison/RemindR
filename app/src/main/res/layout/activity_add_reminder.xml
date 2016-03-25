@@ -59,7 +59,15 @@
                 android:layout_gravity="center_horizontal" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:ems="10"
+                android:id="@+id/addressField"
+                android:hint="Address" />
+
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:id="@+id/notesField"

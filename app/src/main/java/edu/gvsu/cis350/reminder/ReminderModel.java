@@ -18,6 +18,7 @@ public class ReminderModel {
     public int month;
     public int day;
     public Uri reminderSound;
+    public String address;
 
     public ReminderModel() {
 

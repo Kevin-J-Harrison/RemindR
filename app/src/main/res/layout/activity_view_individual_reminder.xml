@@ -68,6 +68,21 @@
             android:textSize="30dp" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="ADDRESS"
+            android:id="@+id/addressView"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View On Map"
+            android:id="@+id/viewMap_button"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
             android:layout_width="301dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
