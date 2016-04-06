@@ -86,7 +86,8 @@
                 android:layout_gravity="center_horizontal"
                 app:backgroundTint="@color/GVBlue"
                 android:src="@mipmap/ic_done"
-                android:layout_weight="0.06" />
+                android:layout_weight="0.06"
+                />
         </LinearLayout>
     </ScrollView>
 

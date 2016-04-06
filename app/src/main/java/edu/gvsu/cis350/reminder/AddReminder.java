@@ -1,6 +1,8 @@
 package edu.gvsu.cis350.reminder;
 
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationListener;
@@ -19,12 +21,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.support.v4.content.ContextCompat;
 import android.content.pm.PackageManager;
-
 import java.util.Calendar;
-
-/**
- * Written by Andrew Burns
- **/
+import java.util.GregorianCalendar;
 
 
 public class AddReminder extends AppCompatActivity {
@@ -40,6 +38,7 @@ public class AddReminder extends AppCompatActivity {
 
     private Calendar calendar = Calendar.getInstance();
     @Override
+    @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
@@ -99,7 +98,9 @@ public class AddReminder extends AppCompatActivity {
                 Intent myIntent = new Intent(AddReminder.this, ViewReminders.class);
                 AddReminder.this.startActivity(myIntent);
 
-                startService(new Intent(AddReminder.this, TimeService.class));
+                //sets alarm
+                setAlarm();
+
             }
         });
 
@@ -127,6 +128,21 @@ public class AddReminder extends AppCompatActivity {
             reminderInfo.minute = timePicker.getCurrentMinute();
         }
         reminderInfo.address = addressText.getText().toString();
+
+    }
+
+    public void setAlarm(){
+        Calendar cal = Calendar.getInstance();
+        cal.set(datePicker.getYear(), datePicker.getMonth(),
+                datePicker.getDayOfMonth(), timePicker.getCurrentHour(),
+                timePicker.getCurrentMinute(),0);
+
+        Intent alertIntent = new Intent(AddReminder.this,AlarmReceiver.class);
+
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                PendingIntent.getBroadcast(AddReminder.this, 1, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT));
 
     }
 
