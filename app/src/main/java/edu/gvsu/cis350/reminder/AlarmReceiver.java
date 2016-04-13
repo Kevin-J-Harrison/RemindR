@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 public class AlarmReceiver extends BroadcastReceiver{
 
@@ -14,8 +15,14 @@ public class AlarmReceiver extends BroadcastReceiver{
     public void onReceive(Context context, Intent intent) {
 
         //create Notification
-        PendingIntent notificationIntent = PendingIntent.getActivity(context, 0,
-                new Intent(context, ViewReminders.class), 0);
+        long id = intent.getExtras().getLong("id");
+
+        Log.d("VALUE OF ID Receive", "" + id);
+
+        Intent notifyIntent = new Intent(context, ViewIndividualReminder.class);
+        notifyIntent.putExtra("id", id);
+
+        PendingIntent notificationIntent = PendingIntent.getActivity(context, (int) id, notifyIntent, 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.splash_img)

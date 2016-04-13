@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -161,7 +162,7 @@ public class AddEditReminderActivity extends AppCompatActivity {
         reminderInfo.title = titleText.getText().toString();
         reminderInfo.notes = notesText.getText().toString();
         reminderInfo.year = datePicker.getYear();
-        reminderInfo.month = (datePicker.getMonth()+1);
+        reminderInfo.month = (datePicker.getMonth());
         reminderInfo.day = datePicker.getDayOfMonth();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             reminderInfo.hour = timePicker.getHour();
@@ -178,18 +179,7 @@ public class AddEditReminderActivity extends AppCompatActivity {
         reminderInfo.address = addressText.getText().toString();
     }
 
-    public void setAlarm(){
-        Calendar cal = Calendar.getInstance();
-        cal.set(datePicker.getYear(), datePicker.getMonth(),
-                datePicker.getDayOfMonth(), timePicker.getCurrentHour(),
-                timePicker.getCurrentMinute(), 0);
-
-        Intent alertIntent = new Intent(AddEditReminderActivity.this,AlarmReceiver.class);
-
-        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-
-        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                PendingIntent.getBroadcast(AddEditReminderActivity.this, 1, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT));
-
+    private void setAlarm(){
+        NotificationHelper.setNotifications(AddEditReminderActivity.this);
     }
 }

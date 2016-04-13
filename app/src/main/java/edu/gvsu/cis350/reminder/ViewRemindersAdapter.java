@@ -66,7 +66,7 @@ public class ViewRemindersAdapter extends BaseAdapter {
         titleText.setText(reminder.title);
 
         TextView dateText = (TextView) convertView.findViewById(R.id.reminder_item_date);
-        dateText.setText(String.format("%02d/%02d/%04d", reminder.month, reminder.day, reminder.year));
+        dateText.setText(String.format("%02d/%02d/%04d", reminder.month + 1, reminder.day, reminder.year));
 
         TextView timeText = (TextView) convertView.findViewById(R.id.reminder_item_time);
         timeText.setText(String.format("%02d : %02d", reminder.hour, reminder.minute));

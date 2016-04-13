@@ -81,10 +81,8 @@ public class ViewReminders extends ListActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == RESULT_OK) {
-            listAdapter.setReminderList(dbHelper.getReminders());
-            listAdapter.notifyDataSetChanged();
-        }
+        listAdapter.setReminderList(dbHelper.getReminders());
+        listAdapter.notifyDataSetChanged();
     }
 
     public void startViewIndividualReminderActivity(long id) {

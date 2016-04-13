@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,7 +28,9 @@ public class ViewIndividualReminder extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         Intent incomingIntent = getIntent();
-        final long id = incomingIntent.getExtras().getLong("id");
+        long id = incomingIntent.getExtras().getLong("id");
+
+        Log.d("VALUE OF ID VI", "" + id);
 
         reminderInfo = dbHelper.getReminder(id);
 
@@ -38,7 +41,7 @@ public class ViewIndividualReminder extends AppCompatActivity {
         TextView addressView = (TextView) findViewById(R.id.addressView);
 
         titleView.setText(reminderInfo.title);
-        dateView.setText(reminderInfo.month + "/" + reminderInfo.day + "/" + reminderInfo.year);
+        dateView.setText((reminderInfo.month + 1) + "/" + reminderInfo.day + "/" + reminderInfo.year);
         timeView.setText(reminderInfo.hour + ":" + reminderInfo.minute);
         notesView.setText(reminderInfo.notes);
         addressView.setText(reminderInfo.address);
@@ -67,7 +70,7 @@ public class ViewIndividualReminder extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent editIntent = new Intent(ViewIndividualReminder.this, AddEditReminderActivity.class);
-                editIntent.putExtra("id", id);
+                editIntent.putExtra("id", reminderInfo.id);
                 ViewIndividualReminder.this.startActivity(editIntent);
             }
         });
