@@ -11,7 +11,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.gvsu.cis350.reminder.ReminderDB.Reminder;
 

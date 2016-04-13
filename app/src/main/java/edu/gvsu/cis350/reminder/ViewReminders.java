@@ -3,105 +3,57 @@ package edu.gvsu.cis350.reminder;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 
-public class ViewReminders extends AppCompatActivity {
+public class ViewReminders extends ListActivity {
 
     ArrayList<ReminderModel> reminderList;
 
     private ReminderDBHelper dbHelper = new ReminderDBHelper(this);
+    private ViewRemindersAdapter listAdapter;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_view_reminders);
+        mContext = this;
+
+        setContentView(R.layout.reminder_list);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.button);
 
         reminderList = new ArrayList<>();
 
+        //get reminders from DB for use
         if(dbHelper.getReminders() != null){
             reminderList = dbHelper.getReminders();
         }
 
-
-
-        //generate the list of reminders
-        if(!reminderList.isEmpty())
-            populateListView();
-
-
+        //generate the list of reminders and set the list adapter
+        if(!reminderList.isEmpty()){
+            listAdapter = new ViewRemindersAdapter(this, reminderList);
+            setListAdapter(listAdapter);
+        }
 
         //Add Reminder Button
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //get ready to go to the next activity, pass the list through
-                Intent myIntent = new Intent(ViewReminders.this, AddReminder.class);
+                Intent myIntent = new Intent(ViewReminders.this, AddEditReminderActivity.class);
+                myIntent.putExtra("id", -1);
                 ViewReminders.this.startActivity(myIntent);
-
-            }
-        });
-
-
-
-
-    }
-
-    private void populateListView() {
-        //Create list of items
-        int size = reminderList.size();
-        String[] reminderFinalListView = new String[size];
-
-        ReminderModel temp;
-        //build an array of titles
-        for (int i = 0; i < size; i++) {
-            temp = reminderList.get(i);
-            reminderFinalListView[i] = (temp.title + "\n" +
-                    temp.month + "/" + temp.day + "/" + temp.year + "   " + temp.hour + ":" + temp.minute);
-        }
-
-        //Build adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_cell, reminderFinalListView);
-
-        //Configure ListView
-        ListView list = (ListView) findViewById(R.id.reminderListView);
-        list.setAdapter(adapter);
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapter, View v, int position,
-                                    long arg3) {
-                Intent viewThisReminderIntent = new Intent(ViewReminders.this, ViewIndividualReminder.class);
-                viewThisReminderIntent.putExtra("position", position);
-                startActivity(viewThisReminderIntent);
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -123,5 +75,21 @@ public class ViewReminders extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK) {
+            listAdapter.setReminderList(dbHelper.getReminders());
+            listAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void startViewIndividualReminderActivity(long id) {
+        Intent intent = new Intent(ViewReminders.this, ViewIndividualReminder.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 }

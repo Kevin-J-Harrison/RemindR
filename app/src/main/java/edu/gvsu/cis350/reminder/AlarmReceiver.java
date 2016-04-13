@@ -15,7 +15,7 @@ public class AlarmReceiver extends BroadcastReceiver{
 
         //create Notification
         PendingIntent notificationIntent = PendingIntent.getActivity(context, 0,
-                new Intent(context, ViewIndividualReminder.class), 0);
+                new Intent(context, ViewReminders.class), 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.splash_img)

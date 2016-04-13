@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="edu.gvsu.cis350.reminder.ViewReminders"
-    tools:showIn="@layout/activity_view_reminders">
+    tools:showIn="@layout/reminder_list">
 
 
     <ListView
