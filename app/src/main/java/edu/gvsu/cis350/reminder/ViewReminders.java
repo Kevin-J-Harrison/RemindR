@@ -90,4 +90,12 @@ public class ViewReminders extends ListActivity {
         intent.putExtra("id", id);
         startActivity(intent);
     }
+
+    public void setReminderEnabled(long id, boolean enabled) {
+        ReminderModel reminder = dbHelper.getReminder(id);
+        reminder.isEnabled = enabled;
+        dbHelper.updateReminder(reminder);
+
+        NotificationHelper.setNotifications(this);
+    }
 }

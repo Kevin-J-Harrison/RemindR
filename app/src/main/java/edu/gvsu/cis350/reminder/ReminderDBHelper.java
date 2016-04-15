@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import edu.gvsu.cis350.reminder.ReminderDB.Reminder;
 
@@ -28,7 +29,8 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
             Reminder.COLUMN_NAME_REMINDER_YEAR + " INTEGER," +
             Reminder.COLUMN_NAME_REMINDER_MONTH + " INTEGER," +
             Reminder.COLUMN_NAME_REMINDER_DAY + " INTEGER," +
-            Reminder.COLUMN_NAME_REMINDER_ADDRESS + " STRING" +
+            Reminder.COLUMN_NAME_REMINDER_ADDRESS + " STRING," +
+            Reminder.COLUMN_NAME_REMINDER_ENABLED + " BOOLEAN" +
             " )";
 
     private static final String SQL_DELETE_REMINDER =
@@ -60,6 +62,7 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
         model.month = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_MONTH));
         model.day = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_DAY));
         model.address = c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_ADDRESS));
+        model.isEnabled = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_ENABLED)) == 0 ? false : true;
 
 
         //model.reminderSound = c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_SOUND)) != "" ? Uri.parse(c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_SOUND))) : null;
@@ -78,6 +81,7 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
         values.put(Reminder.COLUMN_NAME_REMINDER_MONTH, model.month);
         values.put(Reminder.COLUMN_NAME_REMINDER_DAY, model.day);
         values.put(Reminder.COLUMN_NAME_REMINDER_ADDRESS, model.address);
+        values.put(Reminder.COLUMN_NAME_REMINDER_ENABLED, model.isEnabled);
         //values.put(Reminder.COLUMN_NAME_REMINDER_Sound, model.reminderTone != null ? model.reminderSound.toString() : "");
 
         return values;
@@ -123,6 +127,7 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
         }
 
         if (!reminderList.isEmpty()) {
+            Collections.sort(reminderList, new ReminderComparator());
             return reminderList;
         }
 

@@ -7,8 +7,7 @@ import android.net.Uri;
  */
 public class ReminderModel {
 
-    public boolean isEnabled;
-
+    public boolean isEnabled = true;
     public long id = -1;
     public String title;
     public String notes;

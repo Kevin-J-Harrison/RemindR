@@ -22,6 +22,7 @@ public class ReminderDB {
         public static final String COLUMN_NAME_REMINDER_MONTH = "month";
         public static final String COLUMN_NAME_REMINDER_DAY = "day";
         public static final String COLUMN_NAME_REMINDER_ADDRESS = "address";
+        public static final String COLUMN_NAME_REMINDER_ENABLED = "enabled";
         //public static final String COLUMN_NAME_REMINDER_SOUND = "sound";
     }
 }
