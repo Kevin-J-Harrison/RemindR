@@ -50,11 +50,11 @@ public class EspressoTest {
 
         onData(withId(R.id.button)).perform(click());
 
-        onView(withId(R.id.ReminderName)).perform(typeText("Reminder Title"));
-        onView(withId(R.id.ReminderName)).check(matches(withText("Reminder Title")));
+        onView(withId(R.id.displayReminderName)).perform(typeText("Reminder Title"));
+        onView(withId(R.id.displayReminderName)).check(matches(withText("Reminder Title")));
 
-        onView(withId(R.id.notesField)).perform(typeText("reminder notes"));
-        onView(withId(R.id.notesField)).check(matches(withText("reminder notes")));
+        onView(withId(R.id.editNotesField)).perform(typeText("reminder notes"));
+        onView(withId(R.id.editNotesField)).check(matches(withText("reminder notes")));
 
         /**
          * Specifically for datePicker
@@ -63,7 +63,7 @@ public class EspressoTest {
         int month = 11;
         int day = 15;
 
-        onView(withId(R.id.datePicker)).perform(click());
+        onView(withId(R.id.editDatePicker)).perform(click());
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
                 .perform(PickerActions.setDate(year, month + 1, day));
         onView(withId(android.R.id.button1)).perform(click());
@@ -76,7 +76,7 @@ public class EspressoTest {
         int hour = 10;
         int minutes = 59;
 
-        onView(withId(R.id.timePicker)).perform(click());
+        onView(withId(R.id.editTimePicker)).perform(click());
         onView(withClassName(Matchers.equalTo(TimePicker.class.getName())))
                 .perform(PickerActions.setTime(hour, minutes));
         onView(withId(android.R.id.button1)).perform(click());
@@ -108,8 +108,8 @@ public class EspressoTest {
         onData(withId(R.id.reminderListView)).perform(click());
         onView(withId(R.id.editButton)).perform(click());
 
-        onView(withId(R.id.ReminderName)).perform(typeText("New Reminder Title"));
-        onView(withId(R.id.notesField)).perform(typeText("Edit reminder notes"));
+        onView(withId(R.id.editReminderName)).perform(typeText("New Reminder Title"));
+        onView(withId(R.id.editNotesField)).perform(typeText("Edit reminder notes"));
 
         /**
          * Specifically for datePicker
@@ -118,7 +118,7 @@ public class EspressoTest {
         int month = 1;
         int day = 25;
 
-        onView(withId(R.id.datePicker)).perform(click());
+        onView(withId(R.id.editDatePicker)).perform(click());
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
                 .perform(PickerActions.setDate(year, month + 1, day));
         onView(withId(android.R.id.button1)).perform(click());
@@ -129,7 +129,7 @@ public class EspressoTest {
         int hour = 5;
         int minutes = 43;
 
-        onView(withId(R.id.timePicker)).perform(click());
+        onView(withId(R.id.editTimePicker)).perform(click());
         onView(withClassName(Matchers.equalTo(TimePicker.class.getName())))
                 .perform(PickerActions.setTime(hour, minutes));
         onView(withId(android.R.id.button1)).perform(click());
@@ -137,8 +137,8 @@ public class EspressoTest {
 
         onView(withId(R.id.saveEditbutton)).perform(click());
 
-        onView(withId(R.id.ReminderName)).check(matches(withText("New Reminder Title")));
-        onView(withId(R.id.notesField)).check(matches(withText("Edit reminder notes")));
+        onView(withId(R.id.editReminderName)).check(matches(withText("New Reminder Title")));
+        onView(withId(R.id.editNotesField)).check(matches(withText("Edit reminder notes")));
         onView(withId(R.id.dateText)).check(matches(withText(year + "/" + month + "/" + day)));
         onView(withId(R.id.timeText)).check(matches(withText(hour + ":" + minutes)));
     }

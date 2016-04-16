@@ -20,26 +20,27 @@ public class NotificationHelper {
 
         ArrayList<ReminderModel> reminderList = dbHelper.getReminders();
 
-        for(ReminderModel reminderInfo : reminderList) {
+        if (reminderList != null) {
+            for (ReminderModel reminderInfo : reminderList) {
 
-            Calendar curTime = Calendar.getInstance();
-            Calendar reminderTime = Calendar.getInstance();
-            reminderTime.set(reminderInfo.year, reminderInfo.month, reminderInfo.day, reminderInfo.hour, reminderInfo.minute, 0);
+                Calendar curTime = Calendar.getInstance();
+                Calendar reminderTime = Calendar.getInstance();
+                reminderTime.set(reminderInfo.year, reminderInfo.month, reminderInfo.day, reminderInfo.hour, reminderInfo.minute, 0);
 
-            //Check to see if reminder is enabled
-            if(reminderInfo.isEnabled) {
-                //Check date & time to make sure Reminder is set in future. Skip Create if date & time are in the past
-                if (reminderTime.compareTo(curTime) == 1) {
+                //Check to see if reminder is enabled
+                if (reminderInfo.isEnabled) {
+                    //Check date & time to make sure Reminder is set in future. Skip Create if date & time are in the past
+                    if (reminderTime.compareTo(curTime) == 1) {
 
-                    PendingIntent pendingIntent = createPendingIntent(context, reminderInfo);
+                        PendingIntent pendingIntent = createPendingIntent(context, reminderInfo);
 
-                    Calendar cal = createCalendar(reminderInfo);
+                        Calendar cal = createCalendar(reminderInfo);
 
-                    setNotification(context, cal, pendingIntent);
-                }
-                else {
-                    reminderInfo.isEnabled = false;
-                    dbHelper.updateReminder(reminderInfo);
+                        setNotification(context, cal, pendingIntent);
+                    } else {
+                        reminderInfo.isEnabled = false;
+                        dbHelper.updateReminder(reminderInfo);
+                    }
                 }
             }
         }

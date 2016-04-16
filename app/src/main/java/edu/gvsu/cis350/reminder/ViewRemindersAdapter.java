@@ -76,6 +76,9 @@ public class ViewRemindersAdapter extends BaseAdapter {
         Switch onOffSwitch = (Switch) convertView.findViewById(R.id.reminder_item_toggle);
         onOffSwitch.setTag(reminder.id);
         onOffSwitch.setChecked(reminder.isEnabled);
+        if(!reminder.futureTime()) {
+            onOffSwitch.setVisibility(View.GONE);
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             onOffSwitch.setTrackTintMode(PorterDuff.Mode.DST_OVER);
         }

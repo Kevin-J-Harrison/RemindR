@@ -1,7 +1,5 @@
 package edu.gvsu.cis350.reminder;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -90,12 +88,8 @@ public class AddEditReminderActivity extends AppCompatActivity {
 
                 updateReminderInfo();
 
-                Calendar curTime = Calendar.getInstance();
-                Calendar reminderTime = Calendar.getInstance();
-                reminderTime.set(reminderInfo.year, reminderInfo.month, reminderInfo.day, reminderInfo.hour, reminderInfo.minute, 0);
-
                 //Check date & time to make sure Reminder is set in future. Skip Create if date & time are in the past
-                if (reminderTime.compareTo(curTime) == 1) {
+                if (reminderInfo.futureTime()) {
                     future = true;
                 }
 
