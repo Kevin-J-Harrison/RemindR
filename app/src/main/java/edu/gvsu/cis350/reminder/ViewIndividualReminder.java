@@ -30,8 +30,6 @@ public class ViewIndividualReminder extends AppCompatActivity {
         Intent incomingIntent = getIntent();
         long id = incomingIntent.getExtras().getLong("id");
 
-        Log.d("VALUE OF ID VI", "" + id);
-
         reminderInfo = dbHelper.getReminder(id);
 
         TextView titleView = (TextView) findViewById(R.id.titleText);
@@ -41,8 +39,8 @@ public class ViewIndividualReminder extends AppCompatActivity {
         TextView addressView = (TextView) findViewById(R.id.addressView);
 
         titleView.setText(reminderInfo.title);
-        dateView.setText((reminderInfo.month + 1) + "/" + reminderInfo.day + "/" + reminderInfo.year);
-        timeView.setText(reminderInfo.hour + ":" + reminderInfo.minute);
+        dateView.setText(String.format("%02d/%02d/%04d", reminderInfo.month + 1, reminderInfo.day, reminderInfo.year));
+        timeView.setText(String.format("%02d : %02d", reminderInfo.hour, reminderInfo.minute));
         notesView.setText(reminderInfo.notes);
         addressView.setText(reminderInfo.address);
         map = "http://maps.google.co.in/maps?q=" + reminderInfo.address;

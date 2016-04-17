@@ -1,20 +1,18 @@
 package edu.gvsu.cis350.reminder;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
 import java.util.Calendar;
 
 /**
@@ -84,12 +82,6 @@ public class AddEditReminderActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final int curYear = Calendar.getInstance().get(Calendar.YEAR);
-                final int curMonth = Calendar.getInstance().get(Calendar.MONTH);
-                final int curDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-                final int curHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-                final int curMin = Calendar.getInstance().get(Calendar.MINUTE);
-
                 boolean future = false;
 
                 CharSequence text;
@@ -97,12 +89,7 @@ public class AddEditReminderActivity extends AppCompatActivity {
                 updateReminderInfo();
 
                 //Check date & time to make sure Reminder is set in future. Skip Create if date & time are in the past
-                if (reminderInfo.year >= curYear && reminderInfo.month >= curMonth && reminderInfo.day >= curDay
-                        && reminderInfo.hour >= curHour && reminderInfo.minute >= curMin) {
-                    future = true;
-                }
-                if(reminderInfo.year >= curYear && reminderInfo.month >= curMonth && reminderInfo.day >= curDay
-                        && reminderInfo.hour > curHour) {
+                if (reminderInfo.futureTime()) {
                     future = true;
                 }
 

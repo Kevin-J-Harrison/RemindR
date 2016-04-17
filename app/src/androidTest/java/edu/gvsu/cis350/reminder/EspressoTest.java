@@ -12,13 +12,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -61,6 +59,7 @@ public class EspressoTest {
         int month = 4;
         int day = 20;
 
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(scrollTo());
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName())))
                 .perform(PickerActions.setDate(year, month + 1, day));
 
@@ -70,38 +69,41 @@ public class EspressoTest {
         int hour = 10;
         int minutes = 59;
 
-        onView(withClassName(Matchers.equalTo(TimePicker.class.getName())))
-                .perform(scrollTo());
+        onView(withClassName(Matchers.equalTo(TimePicker.class.getName()))).perform(scrollTo());
         onView(withClassName(Matchers.equalTo(TimePicker.class.getName())))
                 .perform(PickerActions.setTime(hour, minutes));
 
+
         /**
-         * Enters an address
+         * Sets the address
          */
         onView(withId(R.id.editAddressField)).perform(scrollTo());
         onView(withId(R.id.editAddressField)).perform(typeText("1 Campus Drive"));
-        onView(withId(R.id.editAddressField)).check(matches(withText("1 Campus Drive")));
-
+        
         /**
-         * Enter into Notes
+         * Sets the notes
          */
         onView(withId(R.id.editNotesField)).perform(scrollTo());
-        onView(withId(R.id.editNotesField)).perform(typeText("Notes notes notes"));
-        onView(withId(R.id.editNotesField)).check(matches(withText("Notes notes notes")));
+        onView(withId(R.id.editNotesField)).perform(typeText("notes notes notes"));
 
         /**
-         * Saves reminder
+         * Saves Reminder
          */
         onView(withId(R.id.saveEditbutton)).perform(scrollTo());
         onView(withId(R.id.saveEditbutton)).perform(click());
 
-        /**
-         * Clicks on the Reminder and verifies the title is the title of the reminder.
-         */
-        onData(isClickable())
-                .inAdapterView(withText("rem"))
-                .perform(click());
+
+    /**
+     * Clicks on the Reminder and verifies the title is the title of the reminder.
+     */
+
     }
+
+    /**
+     * Clicks on the Reminder in the list view, then chooses the option to edit the reminder.
+     * Values are changed and the reminder is saved. Then it is verified that the changes were updated.
+     */
+
 //
 //    /**
 //     * Clicks on the Reminder in the list view, then chooses the option to edit the reminder.

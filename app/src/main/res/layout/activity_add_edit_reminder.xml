@@ -11,7 +11,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="edu.gvsu.cis350.reminder.AddReminder">
+    tools:context="edu.gvsu.cis350.reminder.AddEditReminderActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,8 +30,16 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:hint="Reminder Name"
                 android:text=""
-                android:editable="true"
                 android:id="@+id/displayReminderName" />
+
+            <TimePicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTimePicker"
+                android:layout_below="@+id/editDatePicker"
+                android:layout_centerHorizontal="true"
+                android:timePickerMode="spinner"
+                android:layout_gravity="center_horizontal" />
 
             <DatePicker
                 android:layout_width="match_parent"
@@ -44,14 +52,12 @@
                 android:calendarViewShown="false"
                 android:layout_gravity="center_horizontal" />
 
-            <TimePicker
-                android:layout_width="match_parent"
+
+            <ToggleButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editTimePicker"
-                android:layout_below="@+id/editDatePicker"
-                android:layout_centerHorizontal="true"
-                android:timePickerMode="spinner"
-                android:layout_gravity="center_horizontal" />
+                android:text="Yearly"
+                android:id="@+id/toggleButton" />
 
             <EditText
                 android:layout_width="wrap_content"

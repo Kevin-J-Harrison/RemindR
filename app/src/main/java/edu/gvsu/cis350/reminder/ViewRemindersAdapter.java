@@ -1,13 +1,15 @@
 package edu.gvsu.cis350.reminder;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.ToggleButton;
-
 import java.util.ArrayList;
 
 /**
@@ -53,7 +55,7 @@ public class ViewRemindersAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -71,15 +73,34 @@ public class ViewRemindersAdapter extends BaseAdapter {
         TextView timeText = (TextView) convertView.findViewById(R.id.reminder_item_time);
         timeText.setText(String.format("%02d : %02d", reminder.hour, reminder.minute));
 
-        ToggleButton onOffButton = (ToggleButton) convertView.findViewById(R.id.reminder_item_toggle);
-        onOffButton.setTag(Long.valueOf(reminder.id));
+        Switch onOffSwitch = (Switch) convertView.findViewById(R.id.reminder_item_toggle);
+        onOffSwitch.setTag(reminder.id);
+        onOffSwitch.setChecked(reminder.isEnabled);
+        if(!reminder.futureTime()) {
+            onOffSwitch.setVisibility(View.GONE);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            onOffSwitch.setTrackTintMode(PorterDuff.Mode.DST_OVER);
+        }
+        onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-        convertView.setTag(Long.valueOf(reminder.id));
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    ((ViewReminders) context).setReminderEnabled((long) buttonView.getTag(), true);
+                }
+                else {
+                    ((ViewReminders) context).setReminderEnabled((long) buttonView.getTag(), false);
+                }
+            }
+        });
+
+        convertView.setTag(reminder.id);
         convertView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                ((ViewReminders) context).startViewIndividualReminderActivity((Long) v.getTag());
+                ((ViewReminders) context).startViewIndividualReminderActivity((long) v.getTag());
             }
         });
 
