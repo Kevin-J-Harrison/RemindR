@@ -1,32 +1,34 @@
 package edu.gvsu.cis350.reminder;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
 
-public class ViewReminders extends ListActivity {
+public class ViewReminders extends AppCompatActivity {
 
     ArrayList<ReminderModel> reminderList;
 
     private ReminderDBHelper dbHelper = new ReminderDBHelper(this);
     private ViewRemindersAdapter listAdapter;
-    private Context mContext;
+    private ListView reminderListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mContext = this;
-
         setContentView(R.layout.reminder_list);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.button);
 
@@ -39,8 +41,9 @@ public class ViewReminders extends ListActivity {
 
         //generate the list of reminders and set the list adapter
         if(!reminderList.isEmpty()){
+            reminderListView = (ListView)findViewById(android.R.id.list);
             listAdapter = new ViewRemindersAdapter(this, reminderList);
-            setListAdapter(listAdapter);
+            reminderListView.setAdapter(listAdapter);
         }
 
         //Add Reminder Button
@@ -71,6 +74,9 @@ public class ViewReminders extends ListActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent myIntent = new Intent(ViewReminders.this, AddEditReminderActivity.class);
+            myIntent.putExtra("id", -1);
+            ViewReminders.this.startActivity(myIntent);
             return true;
         }
 
