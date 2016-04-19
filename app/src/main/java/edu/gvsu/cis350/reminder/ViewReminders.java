@@ -1,6 +1,5 @@
 package edu.gvsu.cis350.reminder;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,14 +20,37 @@ public class ViewReminders extends AppCompatActivity {
     private ReminderDBHelper dbHelper = new ReminderDBHelper(this);
     private ViewRemindersAdapter listAdapter;
     private ListView reminderListView;
+    public static int theme = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        switch (theme) {
+            case 0:
+                this.setTheme(R.style.AppTheme_NoActionBar);
+                break;
+            case 1:
+                this.setTheme(R.style.Flame);
+                break;
+            case 2:
+                this.setTheme(R.style.Forest);
+                break;
+            case 3:
+                this.setTheme(R.style.Sunrise);
+                break;
+            case 4:
+                this.setTheme(R.style.Slate);
+                break;
+            case 5:
+                this.setTheme(R.style.TieDye);
+                break;
+        }
+
         setContentView(R.layout.reminder_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.button);
 
@@ -74,8 +96,7 @@ public class ViewReminders extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent myIntent = new Intent(ViewReminders.this, AddEditReminderActivity.class);
-            myIntent.putExtra("id", -1);
+            Intent myIntent = new Intent(ViewReminders.this, Settings.class);
             ViewReminders.this.startActivity(myIntent);
             return true;
         }
@@ -103,5 +124,13 @@ public class ViewReminders extends AppCompatActivity {
         dbHelper.updateReminder(reminder);
 
         NotificationHelper.setNotifications(this);
+    }
+
+    public static void setAppTheme(int newTheme){
+        theme = newTheme;
+    }
+
+    public static int getAppTheme(){
+        return theme;
     }
 }

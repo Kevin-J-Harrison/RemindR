@@ -48,8 +48,7 @@
                     android:layout_below="@+id/displayReminderName"
                     android:orientation="horizontal"
                     android:text="Once"
-                    android:id="@+id/radioButtonOnce"
-                    android:buttonTint="@color/GVBlue"/>
+                    android:id="@+id/radioButtonOnce" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -57,24 +56,21 @@
                     android:orientation="horizontal"
                     android:layout_below="@+id/radioButton"
                     android:text="Yearly"
-                    android:id="@+id/radioButtonYearly"
-                    android:buttonTint="@color/GVBlue"/>
+                    android:id="@+id/radioButtonYearly" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Monthly"
                     android:id="@+id/radioButtonMonthly"
-                    android:layout_gravity="center_horizontal"
-                    android:buttonTint="@color/GVBlue"/>
+                    android:layout_gravity="center_horizontal" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Weekly"
                     android:id="@+id/radioButtonWeekly"
-                    android:layout_gravity="center_horizontal"
-                    android:buttonTint="@color/GVBlue"/>
+                    android:layout_gravity="center_horizontal" />
             </RadioGroup>
 
             <RelativeLayout
@@ -87,7 +83,6 @@
                     android:text="S"
                     android:id="@+id/checkBoxSunday"
                     android:layout_gravity="center"
-                    android:buttonTint="@color/GVBlue"
                     android:layout_marginLeft="25dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true" />
@@ -97,7 +92,6 @@
                     android:layout_height="wrap_content"
                     android:text="M"
                     android:id="@+id/checkBoxMonday"
-                    android:buttonTint="@color/GVBlue"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/checkBoxSunday" />
 
@@ -107,7 +101,6 @@
                     android:text="T"
                     android:id="@+id/checkBoxTuesday"
                     android:layout_gravity="center_horizontal"
-                    android:buttonTint="@color/GVBlue"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/checkBoxMonday" />
 
@@ -117,7 +110,6 @@
                     android:text="W"
                     android:id="@+id/checkBoxWednesday"
                     android:layout_gravity="center_horizontal"
-                    android:buttonTint="@color/GVBlue"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/checkBoxTuesday" />
 
@@ -127,7 +119,6 @@
                     android:text="T"
                     android:id="@+id/checkBoxThursday"
                     android:layout_gravity="center_horizontal"
-                    android:buttonTint="@color/GVBlue"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/checkBoxWednesday" />
 
@@ -137,7 +128,6 @@
                     android:text="F"
                     android:id="@+id/checkBoxFriday"
                     android:layout_gravity="center_horizontal"
-                    android:buttonTint="@color/GVBlue"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/checkBoxThursday" />
 
@@ -147,7 +137,6 @@
                     android:text="S"
                     android:id="@+id/checkBoxSaturday"
                     android:layout_gravity="center_horizontal"
-                    android:buttonTint="@color/GVBlue"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/checkBoxFriday" />
 
@@ -192,7 +181,6 @@
                 android:layout_margin="16dp"
                 android:id="@+id/saveEditbutton"
                 android:layout_gravity="center_horizontal"
-                app:backgroundTint="@color/GVBlue"
                 android:src="@mipmap/ic_done"
                 android:layout_weight="0.06" />
 
@@ -202,7 +190,6 @@
                 android:layout_margin="16dp"
                 android:id="@+id/deleteButton"
                 android:layout_gravity="center_horizontal"
-                app:backgroundTint="@color/GVBlue"
                 android:src="@mipmap/ic_delete"
                 android:layout_weight="0.06" />
 

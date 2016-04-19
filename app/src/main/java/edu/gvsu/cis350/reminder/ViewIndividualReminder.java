@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,6 +23,28 @@ public class ViewIndividualReminder extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        switch (ViewReminders.getAppTheme()) {
+            case 0:
+                this.setTheme(R.style.AppTheme_NoActionBar);
+                break;
+            case 1:
+                this.setTheme(R.style.Flame);
+                break;
+            case 2:
+                this.setTheme(R.style.Forest);
+                break;
+            case 3:
+                this.setTheme(R.style.Sunrise);
+                break;
+            case 4:
+                this.setTheme(R.style.Slate);
+                break;
+            case 5:
+                this.setTheme(R.style.TieDye);
+                break;
+        }
+
         setContentView(R.layout.activity_view_individual_reminder);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 

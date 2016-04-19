@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="GVBlue">#0065a4</color>
+    <color name="GVBlue">#0266a5</color>
     <color name="GVBlack">#000000</color>
     <color name="GVWhite">#FFFFFF</color>
+    <color name="test1">#dd2c00</color>
+    <color name="test2">#000000</color>
+    <color name="test3">#d50000</color>
+    <color name="t2_primary">#8bc34a</color>
+    <color name="t2_accent">#64dd17</color>
+    <color name="flame_bg">#ffab00</color>
+    <color name="flame_t1">#b71c1c</color>
+    <color name="forest_bg">#8d6e63</color>
+    <color name="royal_primary">#ffeb3b</color>
+    <color name="royal_accent">#ffd600</color>
+    <color name="royal_bg">#9c27b0</color>
+    <color name="primary_text_default_material_dark">#ffffff</color>
+    <color name="royal_dis">#afb42b</color>
+    <color name="royal_lit">#ffea00</color>
+    <color name="Slate_primary">#424242</color>
+    <color name="Slate_accent">#d7ccc8</color>
+    <color name="slate_bg">#a1887f</color>
+    <color name="td_primary">#ff4081</color>
+    <color name="td_accent">#00ffa8</color>
 </resources>
