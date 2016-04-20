@@ -117,6 +117,18 @@ public class EspressoTest {
         onView(withId(R.id.displayReminderName)).perform(scrollTo(), clearText(), typeText("New Title"));
         onView(withId(R.id.displayReminderName)).check(matches(withText("New Title")));
 
+        onView(withId(R.id.radioButtonYearly)).perform(click());
+        onView(withId(R.id.radioButtonMonthly)).perform(click());
+        onView(withId(R.id.radioButtonWeekly)).perform(click());
+
+        onView(withId(R.id.checkBoxSunday)).perform(click());
+        onView(withId(R.id.checkBoxMonday)).perform(click());
+        onView(withId(R.id.checkBoxTuesday)).perform(click());
+        onView(withId(R.id.checkBoxWednesday)).perform(click());
+        onView(withId(R.id.checkBoxThursday)).perform(click());
+        onView(withId(R.id.checkBoxFriday)).perform(click());
+        onView(withId(R.id.checkBoxSaturday)).perform(click());
+
         onView(withId(R.id.editAddressField)).perform(scrollTo(), clearText(), typeText("DeVos"));
         onView(withId(R.id.editAddressField)).check(matches(withText("DeVos")));
 
