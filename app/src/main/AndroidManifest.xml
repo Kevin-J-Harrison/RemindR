@@ -61,6 +61,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.gvsu.cis350.reminder.ViewReminders" />
         </activity>
+        <activity android:name=".About"></activity>
     </application>
 
 </manifest>

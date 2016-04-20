@@ -88,6 +88,12 @@ public class ViewReminders extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_about) {
+            Intent myIntent = new Intent(ViewReminders.this, About.class);
+            ViewReminders.this.startActivity(myIntent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
