@@ -30,7 +30,12 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
             Reminder.COLUMN_NAME_REMINDER_MONTH + " INTEGER," +
             Reminder.COLUMN_NAME_REMINDER_DAY + " INTEGER," +
             Reminder.COLUMN_NAME_REMINDER_ADDRESS + " STRING," +
-            Reminder.COLUMN_NAME_REMINDER_ENABLED + " BOOLEAN" +
+            Reminder.COLUMN_NAME_REMINDER_ENABLED + " BOOLEAN," +
+            Reminder.COLUMN_NAME_REPEAT_ONCE + " BOOLEAN," +
+            Reminder.COLUMN_NAME_REPEAT_YEARLY + " BOOLEAN," +
+            Reminder.COLUMN_NAME_REPEAT_MONTHLY + " BOOLEAN," +
+            Reminder.COLUMN_NAME_REPEAT_WEEKLY + " BOOLEAN," +
+            Reminder.COLUMN_NAME_REPEATING_DAYS + " TEXT" +
             " )";
 
     private static final String SQL_DELETE_REMINDER =
@@ -63,8 +68,15 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
         model.day = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_DAY));
         model.address = c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_ADDRESS));
         model.isEnabled = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_ENABLED)) == 0 ? false : true;
+        model.once = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REPEAT_ONCE)) == 0 ? false : true;
+        model.yearly = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REPEAT_YEARLY)) == 0 ? false : true;
+        model.monthly = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REPEAT_MONTHLY)) == 0 ? false : true;
+        model.weekly = c.getInt(c.getColumnIndex(Reminder.COLUMN_NAME_REPEAT_WEEKLY)) == 0 ? false : true;
 
-
+        String[] repeatDays = c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REPEATING_DAYS)).split(",");
+        for(int i = 0; i < repeatDays.length; i++) {
+            model.setRepeatDays(i, repeatDays[i].equals("false") ? false : true);
+        }
         //model.reminderSound = c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_SOUND)) != "" ? Uri.parse(c.getString(c.getColumnIndex(Reminder.COLUMN_NAME_REMINDER_SOUND))) : null;
 
 
@@ -82,6 +94,17 @@ public class ReminderDBHelper extends SQLiteOpenHelper {
         values.put(Reminder.COLUMN_NAME_REMINDER_DAY, model.day);
         values.put(Reminder.COLUMN_NAME_REMINDER_ADDRESS, model.address);
         values.put(Reminder.COLUMN_NAME_REMINDER_ENABLED, model.isEnabled);
+        values.put(Reminder.COLUMN_NAME_REPEAT_ONCE, model.once);
+        values.put(Reminder.COLUMN_NAME_REPEAT_YEARLY, model.yearly);
+        values.put(Reminder.COLUMN_NAME_REPEAT_MONTHLY, model.monthly);
+        values.put(Reminder.COLUMN_NAME_REPEAT_WEEKLY, model.weekly);
+
+        String repeatingDays = "";
+        for (int i = 0; i < 7; ++i) {
+            repeatingDays += model.getRepeatingDay(i) + ",";
+        }
+
+        values.put(Reminder.COLUMN_NAME_REPEATING_DAYS, repeatingDays);
         //values.put(Reminder.COLUMN_NAME_REMINDER_Sound, model.reminderTone != null ? model.reminderSound.toString() : "");
 
         return values;

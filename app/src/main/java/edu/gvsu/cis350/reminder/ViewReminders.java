@@ -12,10 +12,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-
 public class ViewReminders extends AppCompatActivity {
-
-    ArrayList<ReminderModel> reminderList;
 
     private ReminderDBHelper dbHelper = new ReminderDBHelper(this);
     private ViewRemindersAdapter listAdapter;
@@ -50,23 +47,13 @@ public class ViewReminders extends AppCompatActivity {
         setContentView(R.layout.reminder_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.button);
 
-        reminderList = new ArrayList<>();
-
-        //get reminders from DB for use
-        if(dbHelper.getReminders() != null){
-            reminderList = dbHelper.getReminders();
-        }
-
         //generate the list of reminders and set the list adapter
-        if(!reminderList.isEmpty()){
-            reminderListView = (ListView)findViewById(android.R.id.list);
-            listAdapter = new ViewRemindersAdapter(this, reminderList);
-            reminderListView.setAdapter(listAdapter);
-        }
+        reminderListView = (ListView)findViewById(android.R.id.list);
+        listAdapter = new ViewRemindersAdapter(this, dbHelper.getReminders());
+        reminderListView.setAdapter(listAdapter);
+
 
         //Add Reminder Button
         fab.setOnClickListener(new View.OnClickListener() {

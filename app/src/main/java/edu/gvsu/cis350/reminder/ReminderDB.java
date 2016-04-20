@@ -23,6 +23,11 @@ public class ReminderDB {
         public static final String COLUMN_NAME_REMINDER_DAY = "day";
         public static final String COLUMN_NAME_REMINDER_ADDRESS = "address";
         public static final String COLUMN_NAME_REMINDER_ENABLED = "enabled";
+        public static final String COLUMN_NAME_REPEAT_ONCE = "once";
+        public static final String COLUMN_NAME_REPEAT_YEARLY = "yearly";
+        public static final String COLUMN_NAME_REPEAT_MONTHLY = "monthly";
+        public static final String COLUMN_NAME_REPEAT_WEEKLY = "weekly";
+        public static final String COLUMN_NAME_REPEATING_DAYS = "days";
         //public static final String COLUMN_NAME_REMINDER_SOUND = "sound";
     }
 }

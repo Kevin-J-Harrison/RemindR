@@ -93,8 +93,15 @@ public class ViewIndividualReminder extends AppCompatActivity {
                 ViewIndividualReminder.this.startActivity(editIntent);
             }
         });
-
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Update AlarmManager
+        NotificationHelper.setNotifications(ViewIndividualReminder.this);
+        Intent intent = new Intent(ViewIndividualReminder.this, ViewReminders.class);
+        ViewIndividualReminder.this.startActivity(intent);
     }
 
 }

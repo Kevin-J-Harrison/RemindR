@@ -20,9 +20,18 @@ public class ReminderModel {
     public int day;
     public Uri reminderSound;
     public String address;
+    public boolean repeatDays[];
+    public boolean once;
+    public boolean yearly;
+    public boolean monthly;
+    public boolean weekly;
 
     public ReminderModel() {
-
+        repeatDays = new boolean[7];
+        once = false;
+        yearly = false;
+        monthly = false;
+        weekly = false;
     }
 
     public boolean futureTime() {
@@ -36,5 +45,13 @@ public class ReminderModel {
         }
 
         return false;
+    }
+
+    public void setRepeatDays(int day, boolean repeat) {
+        repeatDays[day] = repeat;
+    }
+
+    public boolean getRepeatingDay(int day) {
+        return repeatDays[day];
     }
 }

@@ -73,11 +73,28 @@ public class ViewRemindersAdapter extends BaseAdapter {
         TextView timeText = (TextView) convertView.findViewById(R.id.reminder_item_time);
         timeText.setText(String.format("%02d : %02d", reminder.hour, reminder.minute));
 
+        TextView reminderType = (TextView) convertView.findViewById(R.id.reminder_item_type);
+
+
+        if(reminder.once){
+            reminderType.setText("Once");
+
+        }
+        else if(reminder.yearly) {
+            reminderType.setText("Yearly");
+        }
+        else if(reminder.monthly) {
+            reminderType.setText("Monthly");
+        }
+        else{
+            reminderType.setText(weeklyString(reminder));
+        }
+
         Switch onOffSwitch = (Switch) convertView.findViewById(R.id.reminder_item_toggle);
         onOffSwitch.setTag(reminder.id);
         onOffSwitch.setChecked(reminder.isEnabled);
-        if(!reminder.futureTime()) {
-            onOffSwitch.setVisibility(View.GONE);
+        if(!reminder.isEnabled) {
+            onOffSwitch.setVisibility(View.INVISIBLE);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             onOffSwitch.setTrackTintMode(PorterDuff.Mode.DST_OVER);
@@ -105,5 +122,13 @@ public class ViewRemindersAdapter extends BaseAdapter {
         });
 
         return convertView;
+    }
+
+    private String weeklyString(ReminderModel reminderInfo) {
+        String result = "";
+
+
+
+        return result;
     }
 }
