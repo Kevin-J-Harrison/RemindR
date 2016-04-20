@@ -7,8 +7,6 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/splash_img"
@@ -50,10 +48,19 @@
         <activity
             android:name=".AddEditReminderActivity"
             android:label="@string/title_activity_edit_reminder"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <receiver android:name=".AlarmReceiver"/>
+        <receiver android:name=".AlarmReceiver" />
 
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".ViewReminders"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gvsu.cis350.reminder.ViewReminders" />
+        </activity>
     </application>
 
 </manifest>

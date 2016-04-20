@@ -1,20 +1,59 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/GVBlue</item>
         <item name="colorPrimaryDark">@color/GVBlack</item>
-        <item name="colorAccent">@color/GVWhite</item>
+        <item name="colorAccent">@color/GVBlue</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Flame" parent="AppTheme" >
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/test1</item>
+        <item name="colorPrimaryDark">@color/test2</item>
+        <item name="colorAccent">@color/test3</item>
+        <item name="android:colorBackground">@color/flame_bg</item>
+    </style>
+
+    <style name="testTheme1.NoActionBar" parent="Flame" >
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="Forest" parent="AppTheme" >
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/t2_primary</item>
+        <item name="colorAccent">@color/t2_accent</item>
+        <item name="android:colorBackground">@color/forest_bg</item>
+    </style>
+
+    <style name="Sunrise" parent="AppTheme" >
+        <item name="colorPrimary">@color/royal_primary</item>
+        <item name="colorAccent">@color/royal_accent</item>
+        <item name="android:colorBackground">@color/royal_bg</item>
+        <item name="android:textColorPrimaryInverse">@color/primary_text_material_dark</item>
+    </style>
+
+    <style name="Slate" parent="AppTheme" >
+        <item name="colorPrimary">@color/Slate_primary</item>
+        <item name="colorAccent">@color/Slate_accent</item>
+        <item name="android:colorBackground">@color/slate_bg</item>
+    </style>
+
+    <style name="TieDye" parent="AppTheme" >
+        <item name="colorPrimary">@color/td_primary</item>
+        <item name="colorAccent">@color/td_accent</item>
+    </style>
 
 </resources>

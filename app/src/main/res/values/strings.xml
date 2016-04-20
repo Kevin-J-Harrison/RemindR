@@ -19,5 +19,6 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_view_individual_reminder">ViewIndividualReminder</string>
     <string name="title_activity_edit_reminder">EditReminderActivity</string>
+    <string name="title_activity_settings">Settings</string>
 
 </resources>
