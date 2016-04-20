@@ -14,8 +14,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
@@ -38,12 +40,19 @@ public class EspressoTest {
 
 
     @Rule
-    public ActivityTestRule<ViewReminders> mActivityRule = new ActivityTestRule<>(ViewReminders.class);
+    public ActivityTestRule<ViewReminders>
+            mActivityRule = new ActivityTestRule<>(ViewReminders.class);
 
 
 
     @Test
     public void test01AddReminderButton() {
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(withText("Settings")).perform(click());
+
+        onView(withId(R.id.flameThemeButton)).perform(click());
+        onView(withId(R.id.save_settings)).perform(click());
+
         /**
          * Clicks the button to create a new reminder.
          */
@@ -93,6 +102,12 @@ public class EspressoTest {
      */
         onView(withId(R.id.saveEditbutton)).perform(scrollTo());
         onView(withId(R.id.saveEditbutton)).perform(click());
+
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(withText("Settings")).perform(click());
+
+        onView(withId(R.id.forestThemeButton)).perform(click());
+        onView(withId(R.id.save_settings)).perform(click());
     }
 
 
@@ -101,6 +116,13 @@ public class EspressoTest {
      */
     @Test
     public void test02ViewReminder() {
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(withText("Settings")).perform(click());
+
+        onView(withId(R.id.royalThemeButton)).perform(click());
+        onView(withId(R.id.save_settings)).perform(click());
+
+
         onData(anything())
                 .inAdapterView(withId(android.R.id.list))
                 .atPosition(0)
@@ -114,8 +136,9 @@ public class EspressoTest {
     /**
      * Edits the fields.
      */
-        onView(withId(R.id.displayReminderName)).perform(scrollTo(), clearText(), typeText("New Title"));
-        onView(withId(R.id.displayReminderName)).check(matches(withText("New Title")));
+        onView(withId(R.id.displayReminderName))
+                .perform(scrollTo(), clearText(), typeText("The Flying Circus"));
+        onView(withId(R.id.displayReminderName)).check(matches(withText("The Flying Circus")));
 
         onView(withId(R.id.radioButtonYearly)).perform(click());
         onView(withId(R.id.radioButtonMonthly)).perform(click());
@@ -129,13 +152,21 @@ public class EspressoTest {
         onView(withId(R.id.checkBoxFriday)).perform(click());
         onView(withId(R.id.checkBoxSaturday)).perform(click());
 
-        onView(withId(R.id.editAddressField)).perform(scrollTo(), clearText(), typeText("DeVos"));
-        onView(withId(R.id.editAddressField)).check(matches(withText("DeVos")));
+        onView(withId(R.id.editAddressField))
+                .perform(scrollTo(), clearText(), typeText("Spamalot"));
+        onView(withId(R.id.editAddressField)).check(matches(withText("Spamalot")));
 
-        onView(withId(R.id.editNotesField)).perform(scrollTo(), clearText(), typeText("spam spam eggs spam"));
-        onView(withId(R.id.editNotesField)).check(matches(withText("spam spam eggs spam")));
+        onView(withId(R.id.editNotesField))
+                .perform(scrollTo(), clearText(), typeText("spam spam spam egg and spam"));
+        onView(withId(R.id.editNotesField)).check(matches(withText("spam spam spam egg and spam")));
 
         onView(withId(R.id.saveEditbutton)).perform(scrollTo(), click());
+
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(withText("Settings")).perform(click());
+
+        onView(withId(R.id.slateThemeButton)).perform(click());
+        onView(withId(R.id.save_settings)).perform(click());
     }
 
     /**
@@ -143,6 +174,12 @@ public class EspressoTest {
      */
     @Test
     public void test03DeleteReminder() {
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(withText("Settings")).perform(click());
+
+        onView(withId(R.id.tiedyeThemeButton)).perform(click());
+        onView(withId(R.id.save_settings)).perform(click());
+
         onData(anything())
                 .inAdapterView(withId(android.R.id.list))
                 .atPosition(0)
@@ -152,6 +189,11 @@ public class EspressoTest {
 
         onView(withId(R.id.deleteButton)).perform(scrollTo(), click());
 
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(withText("Settings")).perform(click());
+
+        onView(withId(R.id.GVThemeButton)).perform(click());
+        onView(withId(R.id.save_settings)).perform(click());
     }
 }
 
